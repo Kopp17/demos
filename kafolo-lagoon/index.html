@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kafolo lagoon – Restaurant à Abidjan</title>
+<meta name="description" content="Kafolo lagoon, restaurant à Abidjan. Menu, horaires, itinéraire et réservation par WhatsApp.">
+<style>
+:root{--bg:#14110f;--card:#1e1a17;--txt:#f4ede4;--mute:#a89d90;--acc:#e0a43a;--line:#332d27}
+@media (prefers-color-scheme:light){:root{--bg:#faf6f0;--card:#fff;--txt:#2a2420;--mute:#7a6e62;--line:#e8dfd3}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font:16px/1.6 Georgia,"Times New Roman",serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+.logo{font-weight:700;letter-spacing:.12em}
+nav a{margin-left:18px;color:var(--mute);font:14px system-ui,sans-serif}
+.hero{padding:90px 0 70px;text-align:center;background:radial-gradient(ellipse at top,color-mix(in srgb,var(--acc) 22%,transparent),transparent 65%)}
+.hero h1{font-size:clamp(2.4rem,8vw,4.2rem);letter-spacing:.06em;line-height:1.1}
+.hero p{color:var(--mute);max-width:520px;margin:16px auto 28px}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{font:600 15px system-ui,sans-serif;padding:12px 22px;border-radius:999px;border:1px solid var(--acc);color:var(--acc);cursor:pointer;background:none}
+.btn.fill{background:var(--acc);color:#1a1410}
+section{padding:56px 0}
+h2{font-size:1.8rem;margin-bottom:24px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tab{font:14px system-ui,sans-serif;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--mute);cursor:pointer}
+.tab.on{background:var(--acc);color:#1a1410;border-color:var(--acc)}
+.dish{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.dish b{font-weight:600}.dish small{display:block;color:var(--mute)}
+.price{color:var(--acc);white-space:nowrap;font-weight:700}
+.grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);font:15px system-ui,sans-serif}
+iframe{width:100%;height:260px;border:0;border-radius:10px;margin-top:14px}
+form{display:grid;gap:10px}
+input,select{padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--txt);font:15px system-ui,sans-serif}
+footer{padding:30px 0 90px;text-align:center;color:var(--mute);font:14px system-ui,sans-serif;border-top:1px solid var(--line)}
+.wa{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.35);z-index:9}
+.wa svg{width:30px;height:30px;fill:#fff}
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:520px;height:520px;left:50%;top:-180px;margin-left:-260px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--acc) 35%,transparent),transparent 70%);animation:float 9s ease-in-out infinite alternate}
+.hero .wrap{position:relative;z-index:1}
+.hero.photo,.hero.photo p{color:#f4ede4}
+.hero h1{animation:up .9s both}.hero p{animation:up .9s .2s both}.btns{animation:up .9s .4s both}
+@keyframes up{from{opacity:0;transform:translateY(26px)}}
+@keyframes float{to{transform:translate(60px,40px) scale(1.15)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}100%{box-shadow:0 0 0 18px rgba(37,211,102,0)}}
+.wa{animation:pulse 2.4s infinite}
+.btn{transition:transform .2s}.btn:hover{transform:translateY(-3px)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.gal{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.gal figure{overflow:hidden;border-radius:12px;aspect-ratio:4/3;cursor:zoom-in}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gal figure:hover img{transform:scale(1.08)}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:grid;place-items:center;z-index:20;cursor:zoom-out}
+.lb img{max-width:92vw;max-height:88vh;border-radius:10px}
+@media (prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><span class="logo" id="logo"></span>
+<nav><a href="#menu">Menu</a><a href="#infos">Infos</a><a href="#reserver">Réserver</a></nav></div></header>
+
+<div class="hero"><div class="wrap">
+<h1 id="nom"></h1><p id="slogan"></p>
+<div class="btns" id="heroBtns"></div></div></div>
+
+<section id="menu"><div class="wrap"><h2>Notre menu</h2>
+<div class="tabs" id="tabs"></div><div id="dishes"></div></div></section>
+
+<section id="galerie"><div class="wrap"><h2>Galerie</h2><div class="gal" id="gal"></div></div></section>
+
+<section id="infos"><div class="wrap"><h2>Infos pratiques</h2><div class="grid">
+<div class="card"><h3 style="margin-bottom:10px">Horaires</h3><div id="horaires"></div></div>
+<div class="card"><h3 style="margin-bottom:10px">Adresse</h3><p id="adresse"></p><p id="tel" style="margin-top:6px"></p>
+<iframe id="map" loading="lazy" title="Carte"></iframe></div></div></div></section>
+
+<section id="reserver"><div class="wrap"><h2>Réserver une table</h2>
+<div class="card" style="max-width:480px"><form id="form">
+<input name="nom" placeholder="Votre nom" required>
+<input name="date" type="date" required>
+<input name="heure" type="time" required>
+<select name="pers"><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option><option>10+</option></select>
+<button class="btn fill" type="submit">Réserver par WhatsApp</button></form></div></div></section>
+
+<footer><div class="wrap"><p id="foot"></p></div></footer>
+<a class="wa" id="waFloat" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 32 32"><path d="M16 3C9 3 3.4 8.6 3.4 15.5c0 2.3.6 4.4 1.700 6.300L3 29l7.400-1.900a12.600 12.600 0 0 0 5.600 1.300c7 0 12.600-5.600 12.600-12.500S23 3 16 3zm0 22.800c-1.800 0-3.500-.5-5-1.400l-.4-.2-4.400 1.100 1.200-4.300-.3-.5a10.300 10.300 0 0 1-1.600-5.500c0-5.700 4.700-10.300 10.500-10.300s10.500 4.600 10.500 10.300S21.800 25.800 16 25.800zm5.700-7.700c-.3-.2-1.900-.9-2.200-1s-.5-.2-.7.200-.8 1-1 1.200-.4.200-.7.100a8.500 8.500 0 0 1-4.200-3.700c-.3-.6.300-.5.900-1.700.1-.2 0-.4 0-.5l-1-2.300c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.100-.9.400s-1.200 1.200-1.200 2.800 1.200 3.300 1.400 3.500 2.400 3.700 5.800 5.100c2.100.9 2.900 1 4 .8.600-.1 1.900-.8 2.200-1.500s.3-1.400.2-1.500-.3-.2-.6-.4z"/></svg></a>
+
+<script>
+/* ============ À MODIFIER POUR CHAQUE CLIENT ============ */
+const CONFIG = {
+  nom: "Kafolo lagoon",
+  slogan: "Une table soignée au cœur d’Abidjan. Cuisine généreuse, ambiance chaleureuse.",
+  telephone: "+225 07 87 61 24 97",     // à remplacer
+  whatsapp: "2250787612497",              // format international, sans + ni espaces
+  adresse: "Abidjan, Côte d’Ivoire",    // à compléter avec l’adresse exacte
+  lat: 5.3281777, lon: -3.9084506,
+  devise: "FCFA",
+  photos: [],                           // ajoutées automatiquement depuis le dossier photos/<nom>/
+  horaires: [["Lundi – Vendredi","11h00 – 23h00"],["Samedi","11h00 – 00h00"],["Dimanche","12h00 – 22h00"]],
+  /* Plats et prix = EXEMPLES, à remplacer par le vrai menu du restaurant */
+  menu: [
+    {nom:"Entrées", plats:[
+      {nom:"Salade composée", desc:"Crudités de saison, vinaigrette maison", prix:2500},
+      {nom:"Alloco crevettes", desc:"Bananes plantain frites, crevettes sautées", prix:4000}]},
+    {nom:"Plats", plats:[
+      {nom:"Poulet braisé", desc:"Attiéké, sauce tomate-oignon", prix:6500},
+      {nom:"Poisson capitaine grillé", desc:"Banane plantain, piment frais", prix:9000},
+      {nom:"Kedjenou de poulet", desc:"Mijoté à l’étouffée, riz blanc", prix:7000}]},
+    {nom:"Desserts", plats:[
+      {nom:"Gâteau du jour", desc:"Demandez à votre serveur", prix:2000},
+      {nom:"Salade de fruits frais", desc:"Fruits de saison", prix:2000}]},
+    {nom:"Boissons", plats:[
+      {nom:"Bissap maison", desc:"Fleur d’hibiscus, menthe", prix:1500},
+      {nom:"Jus de gingembre", desc:"Pressé minute", prix:1500}]}
+  ]
+};
+/* ======================================================== */
+
+const $ = id => document.getElementById(id);
+const fmt = n => n.toLocaleString("fr-FR") + " " + CONFIG.devise;
+const wa = txt => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(txt)}`;
+const hello = `Bonjour ${CONFIG.nom}, `;
+
+document.title = `${CONFIG.nom} – Restaurant à Abidjan`;
+$("logo").textContent = CONFIG.nom; $("nom").textContent = CONFIG.nom;
+$("slogan").textContent = CONFIG.slogan;
+$("heroBtns").innerHTML =
+  `<a class="btn fill" href="tel:${CONFIG.telephone.replace(/\s/g,"")}">Appeler</a>
+   ${CONFIG.whatsapp ? `<a class="btn" href="${wa(hello + "je voudrais des informations.")}" target="_blank" rel="noopener">WhatsApp</a>` : ""}
+   <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=${CONFIG.lat},${CONFIG.lon}" target="_blank" rel="noopener">Itinéraire</a>`;
+if (CONFIG.whatsapp) { $("waFloat").href = wa(hello + "je voudrais des informations."); }
+else { $("waFloat").remove(); $("reserver").remove(); document.querySelector('nav a[href="#reserver"]').remove(); }
+$("horaires").innerHTML = CONFIG.horaires.map(([j,h]) => `<div class="row"><span>${j}</span><b>${h}</b></div>`).join("");
+$("adresse").textContent = CONFIG.adresse;
+$("tel").innerHTML = `<a href="tel:${CONFIG.telephone.replace(/\s/g,"")}">${CONFIG.telephone}</a>`;
+$("map").src = `https://maps.google.com/maps?q=${CONFIG.lat},${CONFIG.lon}&z=16&output=embed`;
+$("foot").textContent = `© ${new Date().getFullYear()} ${CONFIG.nom} · ${CONFIG.adresse}`;
+
+function showCat(i){
+  setTimeout(reveal, 0);
+  document.querySelectorAll(".tab").forEach((t,k) => t.classList.toggle("on", k === i));
+  $("dishes").innerHTML = CONFIG.menu[i].plats.map(p =>
+    `<div class="dish"><div><b>${p.nom}</b><small>${p.desc || ""}</small></div><span class="price">${fmt(p.prix)}</span></div>`).join("");
+}
+$("tabs").innerHTML = CONFIG.menu.map((c,i) => `<button class="tab" onclick="showCat(${i})">${c.nom}</button>`).join("");
+showCat(0);
+
+/* Galerie photos : visible seulement si le restaurant a des photos */
+const hero = document.querySelector(".hero");
+if (CONFIG.photos.length) {
+  $("gal").innerHTML = CONFIG.photos.map(p => `<figure><img src="${p}" alt="${CONFIG.nom}" loading="lazy"></figure>`).join("");
+  $("gal").onclick = e => {
+    if (e.target.tagName !== "IMG") return;
+    const lb = document.createElement("div");
+    lb.className = "lb"; lb.innerHTML = `<img src="${e.target.src}" alt="">`;
+    lb.onclick = () => lb.remove(); document.body.appendChild(lb);
+  };
+  hero.classList.add("photo");
+  hero.style.background = `linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.62)),url("${CONFIG.photos[0]}") center/cover`;
+} else { $("galerie").remove(); }
+
+/* Animations d’apparition au défilement */
+let io;
+function reveal(){
+  if (!("IntersectionObserver" in window)) return;
+  io = io || new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+  }), {threshold:.12});
+  document.querySelectorAll("h2,.card,.dish,.gal figure").forEach((el,i) => {
+    if (el.classList.contains("reveal")) return;
+    el.classList.add("reveal"); el.style.transitionDelay = (i % 6) * 70 + "ms"; io.observe(el);
+  });
+}
+
+if ($("form")) $("form").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  window.open(wa(`${hello}je souhaite réserver une table.\nNom : ${f.get("nom")}\nDate : ${f.get("date")}\nHeure : ${f.get("heure")}\nPersonnes : ${f.get("pers")}`), "_blank");
+});
+
+/* Données structurées pour Google (SEO local) */
+const ld = document.createElement("script");
+ld.type = "application/ld+json";
+ld.textContent = JSON.stringify({
+  "@context":"https://schema.org","@type":"Restaurant",name:CONFIG.nom,telephone:CONFIG.telephone,
+  address:{"@type":"PostalAddress",streetAddress:CONFIG.adresse,addressCountry:"CI"},
+  geo:{"@type":"GeoCoordinates",latitude:CONFIG.lat,longitude:CONFIG.lon},hasMenu:location.href+"#menu"
+});
+document.head.appendChild(ld);
+</script>
+</body>
+</html>
